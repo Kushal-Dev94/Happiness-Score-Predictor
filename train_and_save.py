@@ -34,6 +34,9 @@ with open("model/model.pkl", "wb") as f:
 df["predicted_score"] = model.predict(X)
 df.to_csv("data/processed_data.csv", index=False)
 
+# Ensure the static folder exists
+os.makedirs("static", exist_ok=True)
+
 # Correlation heatmap
 corr = df[features + [target]].corr()
 sns.heatmap(corr, annot=True, cmap="coolwarm", fmt=".2f")
